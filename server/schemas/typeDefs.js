@@ -32,11 +32,22 @@ const typeDefs = gql`
     }
 
     type Query {
+        me: User
         users(_id: ID): [User]
         user(email: String!): User
         addresses(_id: String): [Address]
         properties(belongsTo: String): [Property]
         property(_id: ID!): Property
+    }
+
+    type Auth {
+        token: ID!
+        user: User
+    }
+
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        addUser(email: String!, password: String!): Auth
     }
 `;
 
