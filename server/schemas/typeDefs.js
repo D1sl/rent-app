@@ -32,9 +32,9 @@ const typeDefs = gql`
     }
 
     type Query {
-        users: [User]
+        users(_id: ID): [User]
         user(email: String!): User
-        addresses: [Address]
+        addresses(_id: String): [Address]
         properties(belongsTo: String): [Property]
         property(_id: ID!): Property
     }

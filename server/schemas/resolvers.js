@@ -2,8 +2,9 @@ const { User, Address, Property } = require('../models');
 
 const resolvers = {
     Query: {
-        users: async () => {
-            return User.find()
+        users: async (parent, { _id }) => {
+            const params = _id ? { _id } : {}
+            return User.find(params)
                 .populate('properties')
                 .populate('address');
         },
@@ -15,13 +16,14 @@ const resolvers = {
             return Property.find(params)
                 .populate('address');
         },
-        addresses: async () => {
-            return Address.find();
-        },
         property: async (parent, { _id }) => {
             return Property.findOne({ _id })
-                .populate('address')
-        }
+            .populate('address')
+        },
+        addresses: async (parent, { _id }) => {
+            const params = _id ? { _id } : {};
+            return Address.find(params);
+        },
     }
 };
 
