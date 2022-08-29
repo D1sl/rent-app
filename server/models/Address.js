@@ -50,4 +50,6 @@ const addressSchema = new Schema(
     }
 );
 
-module.exports = addressSchema;
+const Address = model('Address', addressSchema);
+
+module.exports = Address;

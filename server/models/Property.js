@@ -1,6 +1,4 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
-const addressSchema = require('./Address');
 
 const propertySchema = new Schema(
     {
@@ -9,11 +7,14 @@ const propertySchema = new Schema(
             required: 'The property requires a title.',
             maxlength: 250
         },
-        email: {
-            type: String,
-            required: true
+        belongsTo: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
         },
-        address: addressSchema
+        address: {
+            type: Schema.Types.ObjectId,
+            ref: 'Address'
+        }
     },
     {
         toJSON: {

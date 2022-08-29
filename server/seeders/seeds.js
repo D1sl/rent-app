@@ -1,11 +1,12 @@
 const faker = require('faker');
 
 const db = require('../config/connection');
-const { User, Property } = require('../models');
+const { User, Property, Address } = require('../models');
 
 db.once('open', async () => {
     await User.deleteMany({});
     await Property.deleteMany({});
+    await Address.deleteMany({});
 
     // Create user data
     const userData = [];
@@ -29,9 +30,10 @@ db.once('open', async () => {
         const propertyTitle = faker.lorem.words(Math.round(Math.random() * 20) + 1);
 
         const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-        const { email, _id: userId } = createdUsers.ops[randomUserIndex];
+        const { _id: userId } = createdUsers.ops[randomUserIndex];
+        const belongsTo = createdUsers.ops[randomUserIndex]
 
-        const createdProperty = await Property.create({ propertyTitle, email });
+        const createdProperty = await Property.create({ propertyTitle, belongsTo });
 
         const updatedUser = await User.updateOne(
             { _id: userId },
@@ -42,32 +44,42 @@ db.once('open', async () => {
     }
 
     // Create addresses
+    let createdAddresses = []
     for (let i = 0; i < 100; i += 1) {
         const address1 = faker.address.streetAddress(true);
         const city = faker.address.city();
         const zipPostcode = faker.address.zipCode();
         const country = faker.address.country();
 
+        const createdAddress = await Address.create({ address1, city, zipPostcode, country })
+        createdAddresses.push(createdAddress);
+
         const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
         const { _id: userId } = createdUsers.ops[randomUserIndex];
+
+
 
         const randomPropertyIndex = Math.floor(Math.random() * createdProperties.length);
         const { _id: propertyId } = createdProperties[randomPropertyIndex]
 
+
         await User.updateOne(
             { _id: userId },
-            { $set: { address: { address1, city, zipPostcode, country } } },
+            { $set: { address: createdAddress._id } },
             { runValidators: true }
         )
 
+        console.log(createdAddress)
+
         await Property.updateOne(
             { _id: propertyId },
-            { $set: { address: { address1, city, zipPostcode, country } } },
+            { $set: { address: createdAddress._id } },
             { runValidators: true }
         )
 
     }
 
     console.log('All done!');
+
     process.exit(0);
 })

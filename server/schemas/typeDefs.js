@@ -16,7 +16,7 @@ const typeDefs = gql`
     type Property {
         _id: ID
         propertyTitle: String
-        email: String
+        belongsTo: String
         address: Address
     }
 
@@ -34,7 +34,8 @@ const typeDefs = gql`
     type Query {
         users: [User]
         addresses: [Address]
-        properties: [Property]
+        properties(belongsTo: String): [Property]
+        property(_id: ID!): Property
     }
 `;
 
