@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "apollo-server-express": "^3.10.2",
+    "bcrypt": "^4.0.1",
+    "express": "^4.18.1",
+    "faker": "^4.1.0",
+    "graphql": "^16.6.0",
+    "mongoose": "^5.13.15"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeders/seeds.js"
+  },
+  "name": "rent-app",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D1sl/rent-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/D1sl/rent-app/issues"
+  },
+  "homepage": "https://github.com/D1sl/rent-app#readme"
+}
