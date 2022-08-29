@@ -7,6 +7,9 @@ const resolvers = {
                 .populate('properties')
                 .populate('address');
         },
+        user: async (parent, { email }) => {
+            return User.findOne({ email })
+        },
         properties: async (parent, { belongsTo }) => {
             const params = belongsTo ? { belongsTo } : {};
             return Property.find(params)

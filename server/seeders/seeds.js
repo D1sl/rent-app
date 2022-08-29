@@ -69,8 +69,6 @@ db.once('open', async () => {
             { runValidators: true }
         )
 
-        console.log(createdAddress)
-
         await Property.updateOne(
             { _id: propertyId },
             { $set: { address: createdAddress._id } },
