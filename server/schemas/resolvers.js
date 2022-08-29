@@ -73,15 +73,21 @@ const resolvers = {
 
             throw new AuthenticationError(errorMessage.noAuth);
         },
-        addAddress: async (parent, args, context) => {
-            if (context.user) {
-                const address = await Address.create(args);
 
-                return address
-            }
+        // Not working for now
+        // addAddress: async (parent, { propertyId, addressData }, context) => {
+        //     if (context.user) {
+        //         const updatedProperty = await Property.updateOne(
+        //             { _id: propertyId },
+        //             { $set: { address: addressData } },
+        //             { new: true, runValidators: true }
+        //         );
 
-            throw new AuthenticationError(errorMessage.noAuth);
-        }
+        //         return updatedProperty;
+        //     }
+
+        //     throw new AuthenticationError(errorMessage.noAuth);
+        // }
     }
 };
 

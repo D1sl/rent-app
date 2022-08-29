@@ -48,7 +48,6 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(email: String!, password: String!): Auth
         addProperty(propertyTitle: String!): Property
-        addAddress(address1: String!, city: String!, zipPostcode: String!, country: String!): Address
     }
 `;
 
