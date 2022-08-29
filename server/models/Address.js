@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const addressSchema = new Schema(
     {
@@ -50,6 +50,6 @@ const addressSchema = new Schema(
     }
 );
 
-const Address = model('Address', addressSchema);
+// const Address = model('Address', addressSchema);
 
-module.exports = Address;
+module.exports = addressSchema;

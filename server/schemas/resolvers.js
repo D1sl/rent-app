@@ -1,6 +1,10 @@
 const { User, Address, Property } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const errorMessage = {
+    noAuth: "Not logged in.",
+    wrongCreds: "Incorrect credentials."
+}
 
 const resolvers = {
     Query: {
@@ -9,17 +13,15 @@ const resolvers = {
                 const userData = await User.findOne({})
                     .select('-__v -password')
                     .populate('properties')
-                    .populate('address');
                 return userData
             }
-            throw new AuthenticationError('Not logged in');
+            throw new AuthenticationError(errorMessage.noAuth);
         },
         users: async (parent, { _id }) => {
             const params = _id ? { _id } : {}
             return User.find(params)
                 .select('-__v -password')
                 .populate('properties')
-                .populate('address');
         },
         user: async (parent, { email }) => {
             return User.findOne({ email })
@@ -28,15 +30,9 @@ const resolvers = {
         properties: async (parent, { belongsTo }) => {
             const params = belongsTo ? { belongsTo } : {};
             return Property.find(params)
-                .populate('address');
         },
         property: async (parent, { _id }) => {
             return Property.findOne({ _id })
-                .populate('address')
-        },
-        addresses: async (parent, { _id }) => {
-            const params = _id ? { _id } : {};
-            return Address.find(params);
         },
     },
     Mutation: {
@@ -50,17 +46,41 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('Incorrect credentials');
+                throw new AuthenticationError(errorMessage.wrongCreds);
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials')
+                throw new AuthenticationError(errorMessage.wrongCreds)
             }
 
             const token = signToken(user);
             return { token, user };
+        },
+        addProperty: async (parent, args, context) => {
+            if (context.user) {
+                const property = await Property.create({ ...args, belongsTo: context.user._id })
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { properties: property._id } },
+                    { new: true }
+                );
+
+                return property;
+            }
+
+            throw new AuthenticationError(errorMessage.noAuth);
+        },
+        addAddress: async (parent, args, context) => {
+            if (context.user) {
+                const address = await Address.create(args);
+
+                return address
+            }
+
+            throw new AuthenticationError(errorMessage.noAuth);
         }
     }
 };

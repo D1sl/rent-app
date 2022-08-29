@@ -35,12 +35,7 @@ const userSchema = new Schema(
             type: String,
             required: false,
         },
-        address: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Address'
-            }
-        ],
+        address: addressSchema,
         properties: [
             {
                 type: Schema.Types.ObjectId,

@@ -6,22 +6,41 @@ const { User, Property, Address } = require('../models');
 db.once('open', async () => {
     await User.deleteMany({});
     await Property.deleteMany({});
-    await Address.deleteMany({});
 
-    // Create user data
+
+    // Create addresses
+    function createAddress() {
+        const address = {
+            address1: faker.address.streetAddress(true),
+            city: faker.address.city(),
+            zipPostcode: faker.address.zipCode(),
+            country: faker.address.country()
+        }
+
+        return address;
+    }
+
+
     const userData = [];
 
     for (let i = 0; i < 50; i += 1) {
-        const firstName = faker.name.firstName();
-        const lastName = faker.name.lastName();
         const email = faker.internet.email();
         const password = faker.internet.password();
+
+        const firstName = faker.name.firstName();
+        const lastName = faker.name.lastName();
         const phone = faker.phone.phoneNumber('+358#########');
 
-        userData.push({ email, password, phone, firstName, lastName });
+        // this works for creating an address
+        const address = createAddress();
+
+        userData.push({ email, password, phone, firstName, lastName, address });
+
     }
 
     const createdUsers = await User.collection.insertMany(userData);
+
+
 
     // Create properties
     let createdProperties = [];
@@ -32,8 +51,10 @@ db.once('open', async () => {
         const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
         const { _id: userId } = createdUsers.ops[randomUserIndex];
         const belongsTo = createdUsers.ops[randomUserIndex]
+        const address = createAddress();
 
-        const createdProperty = await Property.create({ propertyTitle, belongsTo });
+        const createdProperty = await Property.create({ propertyTitle, belongsTo, address });
+        console.log(createdProperty)
 
         const updatedUser = await User.updateOne(
             { _id: userId },
@@ -41,40 +62,6 @@ db.once('open', async () => {
         );
 
         createdProperties.push(createdProperty);
-    }
-
-    // Create addresses
-    let createdAddresses = []
-    for (let i = 0; i < 100; i += 1) {
-        const address1 = faker.address.streetAddress(true);
-        const city = faker.address.city();
-        const zipPostcode = faker.address.zipCode();
-        const country = faker.address.country();
-
-        const createdAddress = await Address.create({ address1, city, zipPostcode, country })
-        createdAddresses.push(createdAddress);
-
-        const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-        const { _id: userId } = createdUsers.ops[randomUserIndex];
-
-
-
-        const randomPropertyIndex = Math.floor(Math.random() * createdProperties.length);
-        const { _id: propertyId } = createdProperties[randomPropertyIndex]
-
-
-        await User.updateOne(
-            { _id: userId },
-            { $set: { address: createdAddress._id } },
-            { runValidators: true }
-        )
-
-        await Property.updateOne(
-            { _id: propertyId },
-            { $set: { address: createdAddress._id } },
-            { runValidators: true }
-        )
-
     }
 
     console.log('All done!');

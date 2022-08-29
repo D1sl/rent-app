@@ -26,8 +26,8 @@ const typeDefs = gql`
         lastName: String
         email: String
         phone: String
+        address: Address
         userType: String
-        address: [Address]
         properties: [Property]        
     }
 
@@ -35,7 +35,6 @@ const typeDefs = gql`
         me: User
         users(_id: ID): [User]
         user(email: String!): User
-        addresses(_id: String): [Address]
         properties(belongsTo: String): [Property]
         property(_id: ID!): Property
     }
@@ -48,6 +47,8 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(email: String!, password: String!): Auth
+        addProperty(propertyTitle: String!): Property
+        addAddress(address1: String!, city: String!, zipPostcode: String!, country: String!): Address
     }
 `;
 
