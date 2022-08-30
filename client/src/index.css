@@ -13,9 +13,10 @@ h1 {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin-right: auto;
   margin-left: auto;
+  padding: 0 20px;
 }
 
 .button {
@@ -26,4 +27,11 @@ h1 {
 
 .button-text {
   padding: 0 15px 0 15px;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

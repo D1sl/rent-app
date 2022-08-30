@@ -5,6 +5,7 @@ export const QUERY_PROPERTIES = gql`
         properties {
             _id
             propertyTitle
+            rent
             address {
                 address1
                 address2

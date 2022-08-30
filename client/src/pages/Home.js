@@ -11,13 +11,14 @@ const Home = () => {
 
     return (
         <div>
-            Home
-            <div className='propertylist'>
-                {loading ? (
-                    <div>Loading...</div>
-                ) : (
-                    <PropertyList properties={properties} title="List of all properties"/>
-                )}
+            <div className='container'>
+                <div className='propertylist'>
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : (
+                        <PropertyList properties={properties} title="List of all properties" />
+                    )}
+                </div>
             </div>
         </div>
     )
