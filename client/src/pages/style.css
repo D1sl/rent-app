@@ -46,3 +46,18 @@
     margin: 0;
     font-weight: bold;
 }
+
+table {
+    width: 100%;
+}
+
+table th {
+    text-align: left;
+    display: block;
+    width: 200px;
+}
+
+table tr {
+    display: flex;
+    border-bottom: 1px solid #D9D9D9;
+}

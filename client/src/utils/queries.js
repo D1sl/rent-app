@@ -6,6 +6,8 @@ export const QUERY_PROPERTIES = gql`
             _id
             propertyTitle
             rent
+            buildingType
+            apartmentType
             address {
                 address1
                 address2
@@ -24,6 +26,28 @@ export const QUERY_PROPERTY = gql`
             _id
             propertyTitle
             rent
+            safetyDeposit
+            buildingType
+            apartmentType
+            floor
+            yearBuilt
+            livingArea
+            elevator
+            bedrooms
+            bathrooms
+            condition
+            kitchenType
+            kitchenEquipment
+            balcony
+            balconyDetails
+            bathroomDetails
+            storageDetails
+            sauna
+            contractType
+            miscDetails
+            otherConditions
+            televisionDetails
+            availableFrom
             address {
                 address1
                 address2

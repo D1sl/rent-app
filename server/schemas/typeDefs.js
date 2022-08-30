@@ -19,6 +19,28 @@ const typeDefs = gql`
         belongsTo: String
         address: Address
         rent: String
+        safetyDeposit: String
+        buildingType: String
+        apartmentType: String
+        floor: String
+        yearBuilt: String
+        livingArea: String
+        elevator: String
+        bedrooms: String
+        bathrooms: String
+        condition: String
+        kitchenType: String
+        kitchenEquipment: String
+        balcony: String
+        balconyDetails: String
+        bathroomDetails: String
+        storageDetails: String
+        sauna: String
+        contractType: String
+        miscDetails: String
+        otherConditions: String
+        availableFrom: String
+        televisionDetails: String
     }
 
     type User {
