@@ -18,6 +18,7 @@ const typeDefs = gql`
         propertyTitle: String
         belongsTo: String
         address: Address
+        rent: String
     }
 
     type User {

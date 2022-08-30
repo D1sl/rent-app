@@ -50,10 +50,11 @@ db.once('open', async () => {
 
         const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
         const { _id: userId } = createdUsers.ops[randomUserIndex];
-        const belongsTo = createdUsers.ops[randomUserIndex]
+        const belongsTo = createdUsers.ops[randomUserIndex];
+        const rent = faker.phone.phoneNumber('####');
         const address = createAddress();
 
-        const createdProperty = await Property.create({ propertyTitle, belongsTo, address });
+        const createdProperty = await Property.create({ propertyTitle, belongsTo, rent, address });
         console.log(createdProperty)
 
         const updatedUser = await User.updateOne(

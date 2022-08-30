@@ -12,6 +12,9 @@ const propertySchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
+        rent: {
+            type: String,
+        },
         address: addressSchema
     },
     {
