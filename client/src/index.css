@@ -1,5 +1,6 @@
 * {
   font-family: 'Cabin', sans-serif;
+  color: #3D3D3D;
 }
 
 body {
@@ -9,4 +10,20 @@ body {
 
 h1 {
   font-family: 'Merriweather', serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.button {
+  border: 1px solid #D9D9D9;
+  background-color: #FFF;
+  height: 40px;
+}
+
+.button-text {
+  padding: 0 15px 0 15px;
 }
