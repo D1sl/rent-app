@@ -1,0 +1,48 @@
+.content {
+    display: block;
+    max-width: 1100px;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+.content#outer {
+    overflow: hidden;
+}
+
+.property-quickdetails {
+    display: flex;
+}
+
+.property-rent {
+    display: block;
+    width: 400px;
+    font-size: 28px;
+
+}
+
+.property-image-box img {
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.property-features {
+    display: grid;
+    grid-template-columns: 5;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    margin: 30px 0;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.property-feature-row {
+    margin-bottom: 20px;
+}
+
+.feature-title {
+    margin: 0;
+}
+
+.feature-content {
+    margin: 0;
+    font-weight: bold;
+}

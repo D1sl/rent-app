@@ -1,14 +1,23 @@
+// React
+import { Link } from 'react-router-dom';
+
+// Styles
 import './style.css';
+
+// Elements
 import logo from '../../assets/img/logo.png';
 import magnifyingGlass from '../../assets/img/magnifying-glass.png';
 import emptyProfile from '../../assets/img/empty-profile.png';
 
 const Header = () => {
+
     return (
         <div className='main-header'>
             <div className='header-content'>
                 <div className='main-header-left'>
-                    <img src={logo} className="logo" alt="logo" />
+                    <Link to="/">
+                        <img src={logo} className="logo" alt="logo" />
+                    </Link>
                 </div>
                 <div className='main-header-center'>
                     <nav>

@@ -1,6 +1,9 @@
+a {
+    text-decoration: none;
+}
+
 .main-property-list {
     display: grid;
-    grid-template-columns: 5;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 30px;
