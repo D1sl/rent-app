@@ -10,7 +10,7 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({})
+                const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('properties')
                 return userData
@@ -33,6 +33,7 @@ const resolvers = {
         },
         property: async (parent, { _id }) => {
             return Property.findOne({ _id })
+            .populate('belongsTo')
         },
     },
     Mutation: {

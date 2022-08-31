@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_PROPERTY } from '../utils/queries';
 
+// Components
+import LandlordInfo from '../components/LandlordInfo';
+
 // Style
 import './style.css';
 
@@ -77,6 +80,7 @@ const SingleProperty = () => {
                         </div>
                     </div>
                 </div>
+                <LandlordInfo landlord={property.belongsTo} />
                 <h2>Basic information</h2>
                 <table>
                     <tr>

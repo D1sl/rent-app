@@ -16,7 +16,7 @@ const typeDefs = gql`
     type Property {
         _id: ID
         propertyTitle: String
-        belongsTo: String
+        belongsTo: User
         address: Address
         rent: String
         safetyDeposit: String

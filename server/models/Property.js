@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const addressSchema = require('./Address');
+const userSchema = require('./User');
 
 const propertySchema = new Schema(
     {
@@ -14,19 +15,19 @@ const propertySchema = new Schema(
         },
         rent: {
             type: String,
-            required: true
+            required: false
         },
         safetyDeposit: {
             type: String,
-            required: true
+            required: false
         },
         buildingType: {
             type: String,
-            required: true
+            required: false
         },
         apartmentType: {
             type: String,
-            required: true
+            required: false
         },
         floor: {
             type: String,
@@ -34,62 +35,77 @@ const propertySchema = new Schema(
         },
         yearBuilt: {
             type: String,
-            // required: true
+            required: false
         },
         livingArea: {
             type: String,
-            // required: true
+            required: false
         },
         elevator: {
             type: Boolean,
-            // required: true
+            required: false
         },
         bedrooms: {
-            type: String
+            type: String,
+            required: false
         },
         bathrooms: {
-            type: String
+            type: String,
+            required: false
         },
         condition: {
             type: String,
+            required: false
         },
         kitchenType: {
-            type: String
+            type: String,
+            required: false
         },
         kitchenEquipment: {
-            type: String
+            type: String,
+            required: false
         },
         balcony: {
-            type: Boolean
+            type: Boolean,
+            required: false
         },
         balconyDetails: {
             type: String,
+            required: false
         },
         bathroomDetails: {
             type: String,
+            required: false
         },
         storageDetails: {
             type: String,
+            required: false
         },
         sauna: {
             type: String,
+            required: false
         },
         contractType: {
-            type: String
+            type: String,
+            required: false
         },
         miscDetails: {
-            type: String
+            type: String,
+            required: false
         },
         otherConditions: {
-            type: String
+            type: String,
+            required: false
         },
         availableFrom: {
-            type: String
+            type: String,
+            required: false
         },
         televisionDetails: {
-            type: String
+            type: String,
+            required: false
         },
-        address: addressSchema
+        address: addressSchema,
     },
     {
         toJSON: {

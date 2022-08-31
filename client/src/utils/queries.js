@@ -56,6 +56,13 @@ export const QUERY_PROPERTY = gql`
                 city
                 country
             }
+            belongsTo {
+                _id
+                firstName
+                lastName
+                phone
+                email
+              }
         }
     }
 `;

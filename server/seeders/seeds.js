@@ -45,7 +45,7 @@ db.once('open', async () => {
     // Create properties
     let createdProperties = [];
 
-    for (let i = 0; i < 100; i += 1) {
+    for (let i = 0; i < 1; i += 1) {
 
         // Helper functions
         function randomBuildingType() {
