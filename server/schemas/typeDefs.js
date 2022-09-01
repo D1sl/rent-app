@@ -48,6 +48,7 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         email: String
+        username: String
         phone: String
         address: Address
         userType: String
@@ -57,7 +58,7 @@ const typeDefs = gql`
     type Query {
         me: User
         users(_id: ID): [User]
-        user(email: String!): User
+        user(_id: ID!): User
         properties(belongsTo: String): [Property]
         property(_id: ID!): Property
     }

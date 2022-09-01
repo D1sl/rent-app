@@ -78,3 +78,29 @@ nav {
     height: 40px;
     width: 40px;
 }
+
+@media screen and (max-width: 740px) {
+
+    .main-header {
+        position: fixed;
+        background-color: white;
+        z-index: 100;
+        width: calc(100vw - 40px);
+    }
+
+    .main-header-left {
+        display: none;
+    }
+
+    .main-header-right {
+        display: none;
+    }
+
+    .header-content {
+        display: block;
+    }
+    
+    nav {
+        justify-content: space-between;
+    }
+}

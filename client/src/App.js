@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 
 // Pages
 import Home from './pages/Home';
+import Profile from './pages/Profile'
 import SingleProperty from './pages/SingleProperty';
 import NoMatch from './pages/NoMatch';
 
@@ -24,13 +25,16 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className='page-container'>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/property/:id" element={<SingleProperty />} />
-            <Route path="*" element={<NoMatch />} />
-          </Routes>
-          <Footer />
+            <Header />
+          <div className='spacer'>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/property/:id" element={<SingleProperty />} />
+              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="*" element={<NoMatch />} />
+            </Routes>
+          </div>
+            <Footer />
         </div>
       </Router>
     </ApolloProvider>

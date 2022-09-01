@@ -23,8 +23,8 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('properties')
         },
-        user: async (parent, { email }) => {
-            return User.findOne({ email })
+        user: async (parent, { _id }) => {
+            return User.findOne({ _id })
                 .select('-__v -password')
         },
         properties: async (parent, { belongsTo }) => {

@@ -23,18 +23,19 @@ db.once('open', async () => {
 
     const userData = [];
 
-    for (let i = 0; i < 50; i += 1) {
-        const email = faker.internet.email();
+    for (let i = 0; i < 1; i += 1) {
         const password = faker.internet.password();
-
+        
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
+        const username = faker.internet.userName()
+        const email = faker.internet.email(firstName, lastName);
         const phone = faker.phone.phoneNumber('+358#########');
 
         // this works for creating an address
         const address = createAddress();
 
-        userData.push({ email, password, phone, firstName, lastName, address });
+        userData.push({ username, email, password, phone, firstName, lastName, address });
 
     }
 
@@ -75,7 +76,7 @@ db.once('open', async () => {
         const { _id: userId } = createdUsers.ops[randomUserIndex];
         const belongsTo = createdUsers.ops[randomUserIndex];
         const rent = generateRandomNumber(500, 1500);
-        const safetyDeposit = generateRandomNumber(1000, 3000);
+        const safetyDeposit = rent * 2;
         const buildingType = randomBuildingType();
         const apartmentType = randomApartmentType();
         const floor = Math.floor(Math.random() * 10);
