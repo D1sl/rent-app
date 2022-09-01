@@ -60,6 +60,7 @@ export const QUERY_PROPERTY = gql`
                 _id
                 firstName
                 lastName
+                username
                 phone
                 email
               }
@@ -68,8 +69,8 @@ export const QUERY_PROPERTY = gql`
 `;
 
 export const QUERY_USER = gql`
-    query user($id: ID!) {
-        user(_id: $id) {
+    query user($username: String!) {
+        user(username: $username) {
             _id
             email
             firstName
@@ -77,6 +78,23 @@ export const QUERY_USER = gql`
             phone
             email
             username
+            bio
+            memberSince
+            address {
+                city
+            }
+            properties {
+                _id
+                rent
+                address {
+                    address1
+                    address2
+                    address3
+                    zipPostcode
+                    city
+                    country
+                }
+            }
         }
     }
 `

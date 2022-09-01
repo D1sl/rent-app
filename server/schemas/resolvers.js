@@ -23,13 +23,15 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('properties')
         },
-        user: async (parent, { _id }) => {
-            return User.findOne({ _id })
+        user: async (parent, { username }) => {
+            return User.findOne({ username })
                 .select('-__v -password')
+                .populate('properties')
         },
         properties: async (parent, { belongsTo }) => {
             const params = belongsTo ? { belongsTo } : {};
             return Property.find(params)
+            .populate('belongsTo')
         },
         property: async (parent, { _id }) => {
             return Property.findOne({ _id })

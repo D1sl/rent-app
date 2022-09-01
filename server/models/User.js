@@ -37,6 +37,14 @@ const userSchema = new Schema(
             required: false,
             trim: true
         },
+        bio: {
+            type: String,
+            required: false
+        },
+        memberSince: {
+            type: String,
+            required: false
+        },
         userType: {
             type: String,
             required: false,

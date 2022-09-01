@@ -25,19 +25,22 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className='page-container'>
-            <Header />
+          <Header />
           <div className='spacer'>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/property/:id" element={<SingleProperty />} />
-              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="/profile">
+                <Route path=":username" element={<Profile />} />
+                <Route path="" element={<Profile />} />
+              </Route>
               <Route path="*" element={<NoMatch />} />
             </Routes>
           </div>
-            <Footer />
+          <Footer />
         </div>
       </Router>
-    </ApolloProvider>
+    </ApolloProvider >
 
 
   );

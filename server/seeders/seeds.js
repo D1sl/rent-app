@@ -23,7 +23,7 @@ db.once('open', async () => {
 
     const userData = [];
 
-    for (let i = 0; i < 1; i += 1) {
+    for (let i = 0; i < 10; i += 1) {
         const password = faker.internet.password();
         
         const firstName = faker.name.firstName();
@@ -31,11 +31,13 @@ db.once('open', async () => {
         const username = faker.internet.userName()
         const email = faker.internet.email(firstName, lastName);
         const phone = faker.phone.phoneNumber('+358#########');
-
+        const memberSince = new Date().getFullYear();
+        
         // this works for creating an address
         const address = createAddress();
+        const bio = `Hello! My name is ${firstName}! I'm a landlord from ${address.city}. I've been letting since the 1990's so I'm experienced and I'm sure you'll have a wonderful time letting from me.`;
 
-        userData.push({ username, email, password, phone, firstName, lastName, address });
+        userData.push({ username, email, password, phone, firstName, lastName, address, bio, memberSince });
 
     }
 
@@ -46,7 +48,7 @@ db.once('open', async () => {
     // Create properties
     let createdProperties = [];
 
-    for (let i = 0; i < 1; i += 1) {
+    for (let i = 0; i < 100; i += 1) {
 
         // Helper functions
         function randomBuildingType() {
