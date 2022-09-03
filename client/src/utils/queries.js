@@ -109,6 +109,7 @@ export const QUERY_ME = gql`
             bio
             email
             phone
+            userStatus
             memberSince
             address {
                 address1
@@ -141,6 +142,7 @@ export const QUERY_ME_BASIC = gql`
             _id
             username
             email
+            userStatus
             properties {
                 _id
                 rent

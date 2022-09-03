@@ -66,6 +66,8 @@ const userSchema = new Schema(
     }
 );
 
+
+
 // Middleware to hash the passwords
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
@@ -80,6 +82,14 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('userStatus').get(function() {
+    if ( !this.firstName || !this.lastName || !this.phone ) {
+        return "incomplete"
+    } else {
+        return "complete"
+    }
+})
 
 const User = model('User', userSchema);
 

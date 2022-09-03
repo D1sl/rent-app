@@ -85,7 +85,8 @@ input {
 .form-input {
   border: 1px solid #D9D9D9;
   height: 38px;
-  padding: 0 10px;
+  padding: 0 20px;
+  width: calc(100% - 40px);
 }
 
 /* @media screen and (max-width: 700px) {

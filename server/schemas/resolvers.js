@@ -76,6 +76,9 @@ const resolvers = {
 
             throw new AuthenticationError(errorMessage.noAuth);
         },
+        updateUser: async (parent, args) => {
+            return User.findByIdAndUpdate(args._id, args, { new: true }).exec();
+        }
 
         // Not working for now
         // addAddress: async (parent, { propertyId, addressData }, context) => {

@@ -54,6 +54,7 @@ const typeDefs = gql`
         bio: String
         memberSince: String
         userType: String
+        userStatus: String
         properties: [Property]        
     }
 
@@ -78,6 +79,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
+        updateUser(_id: ID!, username: String, email: String, password: String, firstName: String, lastName: String, phone: String): User
+
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addProperty(propertyTitle: String!, address: AddressInput!): Property

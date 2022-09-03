@@ -1,29 +1,29 @@
+import { QUERY_PROPERTIES, QUERY_ME } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import { QUERY_PROPERTIES, QUERY_ME_BASIC } from '../utils/queries';
-
-import Auth from '../utils/auth';
 
 // Components
 import PropertyList from '../components/PropertyList';
+// import Popup from '../components/Popup';
+
 
 const Home = () => {
     const { loading, data } = useQuery(QUERY_PROPERTIES);
-    const { data: userData } = useQuery(QUERY_ME_BASIC);
+    const { uLoading, uData } = useQuery(QUERY_ME);
+    const userData = uData?.me || [];
 
     const properties = data?.properties || [];
 
-    const loggedIn = Auth.loggedIn();
-
     return (
         <div>
+            {/* <Popup /> */}
             <div className='container'>
                 <div className='mobile-container'>
-                {loggedIn && userData ? (
+                    {/* {loggedIn && userData ? (
                         <div>
                             <h1>Your properties</h1>
-                            {/* <PropertyList properties={userData.me.properties} title="Your properties" /> */}
+                            <PropertyList properties={userData.me.properties} title="Your properties" />
                         </div>
-                    ) : null}
+                    ) : null} */}
                     <div className='propertylist'>
                         {loading ? (
                             <div>Loading...</div>

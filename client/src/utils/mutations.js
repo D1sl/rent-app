@@ -38,3 +38,12 @@ export const ADD_PROPERTY = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+    mutation updateUser($id: ID!, $firstName: String) {
+        updateUser(_id: $id, firstName: $firstName) {
+            _id
+            firstName
+        }
+  }
+`;

@@ -3,37 +3,23 @@ import { useQuery } from '@apollo/client';
 
 import Auth from '../utils/auth';
 
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_USER, QUERY_ME, QUERY_PROPERTIES } from '../utils/queries';
 
 import PropertyList from '../components/PropertyList';
 
-const Profile = () => {
-    const { username: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-        variables: { username: userParam }
-    });
+const Home2 = () => {
+    const { loading, data } = useQuery(QUERY_ME);
     
     const user = data?.me || data?.user || {};
 
-    if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Navigate to="/profile" />;
-    }
+    const properties = data?.properties || [];
+
 
     if (loading) {
         return <div>Loading...</div>
     }
 
     console.log(user.userStatus)
-
-    if (!user?.username) {
-        return (
-            <div className='container'>
-                <div className='mobile-container'>
-                    <h1>You need to be logged in to see this page.</h1>
-                </div>
-            </div>
-        )
-    }
 
     return (
         <div className='container'>
@@ -51,7 +37,6 @@ const Profile = () => {
                     </div>
                     <div className='profile-right'>
                         <h1>
-                            {userParam ? (`Hi! I'm ${user.firstName}!`) : ("Viewing your profile")}
                         </h1>
                         <p>{user.bio}</p>
                         <PropertyList properties={user.properties} title={`${user.firstName}'s properties`} />
@@ -63,4 +48,4 @@ const Profile = () => {
     )
 };
 
-export default Profile;
+export default Home2;
