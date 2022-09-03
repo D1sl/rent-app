@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import Auth from '../utils/auth';
@@ -53,6 +53,7 @@ const Profile = () => {
                         </h1>
                         <p>{user.bio}</p>
                         <PropertyList properties={user.properties} title={`${user.firstName}'s properties`} />
+                        <Link to="/list-your-property">List your property</Link>
                     </div>
                 </div>
             </div>

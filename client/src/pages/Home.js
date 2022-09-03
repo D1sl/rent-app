@@ -11,7 +11,6 @@ const Home = () => {
     const { data: userData } = useQuery(QUERY_ME_BASIC);
 
     const properties = data?.properties || [];
-    console.log(userData)
 
     const loggedIn = Auth.loggedIn();
 
@@ -19,10 +18,10 @@ const Home = () => {
         <div>
             <div className='container'>
                 <div className='mobile-container'>
-                    {loggedIn && userData ? (
+                {loggedIn && userData ? (
                         <div>
                             <h1>Your properties</h1>
-                            <PropertyList properties={userData.me.properties} title="Your properties" />
+                            {/* <PropertyList properties={userData.me.properties} title="Your properties" /> */}
                         </div>
                     ) : null}
                     <div className='propertylist'>

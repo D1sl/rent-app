@@ -13,6 +13,7 @@ import SingleProperty from './pages/SingleProperty';
 import NoMatch from './pages/NoMatch';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import NewProperty from './pages/NewProperty';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,6 +50,7 @@ function App() {
               </Route>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/list-your-property" element={<NewProperty />} />
               <Route path="*" element={<NoMatch />} />
             </Routes>
           </div>

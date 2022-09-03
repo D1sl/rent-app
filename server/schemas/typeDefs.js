@@ -70,10 +70,17 @@ const typeDefs = gql`
         user: User
     }
 
+    input AddressInput {
+        address1: String
+        zipPostcode: String
+        city: String
+        country: String
+    }
+
     type Mutation {
-        login(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        addProperty(propertyTitle: String!): Property
+        addProperty(propertyTitle: String!, address: AddressInput!): Property
     }
 `;
 
