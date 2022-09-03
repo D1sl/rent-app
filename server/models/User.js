@@ -43,6 +43,7 @@ const userSchema = new Schema(
         },
         memberSince: {
             type: String,
+            default: new Date().getFullYear(),
             required: false
         },
         userType: {

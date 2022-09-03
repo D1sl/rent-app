@@ -97,4 +97,62 @@ export const QUERY_USER = gql`
             }
         }
     }
-`
+`;
+
+export const QUERY_ME = gql`
+    {
+        me {
+            _id
+            username
+            firstName
+            lastName
+            bio
+            email
+            phone
+            memberSince
+            address {
+                address1
+                address2
+                address3
+                zipPostcode
+                city
+                country
+            }
+            properties {
+                _id
+                propertyTitle
+                rent
+                address {
+                    address1
+                    address2
+                    address3
+                    zipPostcode
+                    city
+                    country
+                }
+            }
+        }
+    }
+`;
+
+export const QUERY_ME_BASIC = gql`
+    {
+        me {
+            _id
+            username
+            email
+            properties {
+                _id
+                rent
+                address {
+                    address1
+                    address2
+                    address3
+                    zipPostcode
+                    city
+                    country
+                }
+            }
+        }
+    }
+`;

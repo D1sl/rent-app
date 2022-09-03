@@ -13,6 +13,10 @@ h1 {
   font-size: 27px;
 }
 
+a {
+  color: #DC3333;
+}
+
 .container {
   width: calc(100vw - 100px);
   max-width: 1500px;
@@ -25,6 +29,23 @@ h1 {
   border: 1px solid #D9D9D9;
   background-color: #FFF;
   height: 40px;
+  cursor: pointer;
+}
+
+.btn-action {
+  background-color: #DC3333;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-action:hover {
+  background-color: #b92a2a!important;
+  color: white;
+  font-weight: 600;
+}
+
+.button:hover {
+  background-color: #eeeeee;
 }
 
 .button-text {
@@ -40,6 +61,22 @@ h1 {
 
 .spacer {
   padding: 0;
+}
+
+.authform {
+  width: 350px;
+}
+
+.form-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input {
+  border: 1px solid #D9D9D9;
+  height: 38px;
+  padding: 0 10px;
 }
 
 /* @media screen and (max-width: 700px) {
