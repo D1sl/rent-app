@@ -4,6 +4,8 @@ import magnifyingGlassIcon from '../../assets/img/magnifying-glass-icon.png';
 import userIcon from '../../assets/img/user-icon.png';
 import { Link } from 'react-router-dom';
 
+import Auth from '../../utils/auth';
+
 const Footer = () => {
     return (
         <div className='main-footer'>
@@ -24,10 +26,25 @@ const Footer = () => {
                                 <span>Apartments</span>
                             </div>
                         </Link>
-                        <div className="tab-button">
-                            <img src={userIcon} className="tab-button-icon" alt="magnifying glass" />
-                            <span>Sign in</span>
-                        </div>
+
+
+                        {Auth.loggedIn() ? (
+                            <>
+                                <Link to="/profile">
+                                    <div className="tab-button">
+                                        <img src={userIcon} className="tab-button-icon" alt="magnifying glass" />
+                                        <span>Profile</span>
+                                    </div>
+                                </Link>
+                            </>
+                        ) : (
+                            <Link to="/login">
+                                <div className="tab-button">
+                                    <img src={userIcon} className="tab-button-icon" alt="magnifying glass" />
+                                    <span>Sign in</span>
+                                </div>
+                            </Link>
+                        )}
                     </div>
                 </div>
                 <div className='main-footer-right'>

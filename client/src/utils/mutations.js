@@ -29,6 +29,7 @@ export const ADD_PROPERTY = gql`
         addProperty(propertyTitle: $propertyTitle, address: $address) {
           _id
           propertyTitle
+          rent
           address {
             address1
             country
@@ -40,10 +41,12 @@ export const ADD_PROPERTY = gql`
 `;
 
 export const UPDATE_USER = gql`
-    mutation updateUser($id: ID!, $firstName: String) {
-        updateUser(_id: $id, firstName: $firstName) {
-            _id
+    mutation updateUser($id: ID!, $firstName: String, $lastName: String, $phone: String) {
+        updateUser(_id: $id, firstName: $firstName, lastName: $lastName, phone: $phone) {
+        _id
             firstName
-        }
-  }
+            lastName
+            phone
+      }
+    }
 `;

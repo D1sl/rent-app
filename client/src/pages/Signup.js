@@ -41,33 +41,35 @@ const Signup = () => {
                 <h1>Sign up</h1>
                 <p>Already have an account? <Link to="/login">Sign in</Link>!</p>
                 <form className="authform form-stacked" onSubmit={handleFormSubmit}>
-                    <input
-                        className="form-input"
-                        placeholder="Username"
-                        name="username"
-                        type="username"
-                        id="username"
-                        value={formState.username}
-                        onChange={handleChange}
-                    />
-                    <input
-                        className="form-input"
-                        placeholder="Email"
-                        name="email"
-                        type="email"
-                        id="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                    />
-                    <input
-                        className="form-input"
-                        placeholder="Password"
-                        name="password"
-                        type="password"
-                        id="password"
-                        value={formState.password}
-                        onChange={handleChange}
-                    />
+                    <div className='inputs'>
+                        <input
+                            className="form-input input-group"
+                            placeholder="Username"
+                            name="username"
+                            type="username"
+                            id="username"
+                            value={formState.username}
+                            onChange={handleChange}
+                        />
+                        <input
+                            className="form-input input-group"
+                            placeholder="Email"
+                            name="email"
+                            type="email"
+                            id="email"
+                            value={formState.email}
+                            onChange={handleChange}
+                        />
+                        <input
+                            className="form-input input-group"
+                            placeholder="Password"
+                            name="password"
+                            type="password"
+                            id="password"
+                            value={formState.password}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <button className="button btn-action" type="submit">
                         Sign Up
                     </button>

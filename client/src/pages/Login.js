@@ -40,27 +40,29 @@ const Login = (props) => {
                 <h1>Sign in</h1>
                 <p>Don't have an account yet? <Link to="/signup">Sign up today</Link>!</p>
                 <form className="authform form-stacked" onSubmit={handleFormSubmit}>
-                    <input
-                        className="form-input"
-                        placeholder="Email"
-                        name="email"
-                        type="email"
-                        id="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                    />
-                    <input
-                        className="form-input"
-                        placeholder="Password"
-                        name="password"
-                        type="password"
-                        id="password"
-                        value={formState.password}
-                        onChange={handleChange}
-                    />
+                    <div className='inputs'>
+                        <input
+                            className='form-input input-group'
+                            placeholder="Email"
+                            name="email"
+                            type="email"
+                            id="email"
+                            value={formState.email}
+                            onChange={handleChange}
+                        />
+                        <input
+                            className='form-input input-group'
+                            placeholder="Password"
+                            name="password"
+                            type="password"
+                            id="password"
+                            value={formState.password}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <button className="button btn-action" type="submit">
                         Sign In
-                    </button>   
+                    </button>
                 </form>
                 {error && <div>Sign in failed</div>}
             </div>
