@@ -1,7 +1,5 @@
 import PropertyForm from '../components/PropertyForm'
 
-import { useState } from 'react';
-
 const NewProperty = () => {
     return (
         <div className="container">

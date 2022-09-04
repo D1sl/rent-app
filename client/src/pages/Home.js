@@ -1,15 +1,11 @@
-import { QUERY_PROPERTIES, QUERY_ME } from '../utils/queries';
+import { QUERY_PROPERTIES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
 // Components
 import PropertyList from '../components/PropertyList';
-// import Popup from '../components/Popup';
-
 
 const Home = () => {
     const { loading, data } = useQuery(QUERY_PROPERTIES);
-    const { uLoading, uData } = useQuery(QUERY_ME);
-    const userData = uData?.me || [];
 
     const properties = data?.properties || [];
 

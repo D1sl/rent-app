@@ -19,7 +19,7 @@ const PropertyList = ({ properties, title }) => {
                             <Link to={`/property/${property._id}`}>
                                 <div className="main-property-list-item">
                                     <div className="property-list-image">
-                                        <img src="https://api.lorem.space/image/house" className='property-list-image-element' />
+                                        <img src="https://api.lorem.space/image/house" className='property-list-image-element' alt='preview' />
                                     </div>
                                     <h2 className="property-list-item-title">{property.address.address1}</h2>
                                     <p className="property-list-item-description">{property.address.zipPostcode}{", "}{property.address.city}</p>

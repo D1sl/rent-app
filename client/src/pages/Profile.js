@@ -41,7 +41,7 @@ const Profile = () => {
                 <div className='profile-container'>
                     <div className='profile-left'>
                         <div className='user-details'>
-                            <img src="https://api.lorem.space/image/face?w=150&h=150" alt="profile image" />
+                            <img src="https://api.lorem.space/image/face?w=150&h=150" alt="profile" />
                             <ul>
                                 <li>Member since {user.memberSince}</li>
                                 {user.properties.length ? (<li>{user.properties.length} {user.properties.length > 1 ? `Properties` : "Property"}</li>) : null}

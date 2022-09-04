@@ -39,7 +39,7 @@ const SingleProperty = () => {
                     <img src={backIcon} className="ui-icon" alt="back icon" />
                 </div>
                 <div className='property-image-box'>
-                    <img src="https://api.lorem.space/image/house?w=1000" />
+                    <img src="https://api.lorem.space/image/house?w=1000" alt="The property" />
                 </div>
                 <div className='mobile-container'>
                     <div className='property-quickdetails-mobile'>
