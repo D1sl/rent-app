@@ -17,9 +17,10 @@ const PropertyForm = () => {
     });
 
     const [addressState, setAddressState] = useState({
-        address1: "",
-        zipPostcode: "",
-        city: "",
+        addressLine1: "",
+        addressLine2: "",
+        addressLevel2: "",
+        postalCode: "",
         country: "",
     })
 
@@ -52,7 +53,7 @@ const PropertyForm = () => {
                 address
             }
         }).then(
-            window.location.assign('/')            )
+            window.location.assign('/'))
     }
 
 
@@ -79,8 +80,8 @@ const PropertyForm = () => {
                 <AddressAutofill accessToken="pk.eyJ1IjoiYmVubW9saW5pIiwiYSI6ImNsN242N2t5MTA1ZmYzbnAzdjc4MTMwbW8ifQ.MXHyvIiPxoupFTIGgvFVhw">
                     <input
                         className='form-input form-input-standalone'
-                        name="address1" 
-                        placeholder="Address" 
+                        name="addressLine1"
+                        placeholder="Address"
                         type="text"
                         autoComplete="address-line1"
                         onChange={handleAddressChange}
@@ -91,33 +92,34 @@ const PropertyForm = () => {
                     <div className='inputs'>
                         <input
                             className='form-input input-group'
-                            name="apartment" 
-                            placeholder="Apartment number" 
+                            name="addressLine2"
+                            placeholder="Apartment"
                             type="text"
                             autoComplete="address-line2"
+                            onChange={handleAddressChange}
                         />
                         <input
                             className='form-input input-group'
-                            name="city" 
-                            placeholder="City" 
+                            name="addressLevel2"
+                            placeholder="City"
                             type="text"
                             autoComplete="address-level2"
                             onChange={handleAddressChange}
                         />
                         <input
                             className='form-input input-group'
-                            name="country" 
-                            placeholder="Country" 
+                            name="postalCode"
+                            placeholder="Postal Code or Zip"
                             type="text"
-                            autoComplete="country"
+                            autoComplete="postal-code"
                             onChange={handleAddressChange}
                         />
                         <input
                             className='form-input input-group'
-                            name="zipPostcode" 
-                            placeholder="Postcode" 
+                            name="country"
+                            placeholder="Country"
                             type="text"
-                            autoComplete="postal-code"
+                            autoComplete="country"
                             onChange={handleAddressChange}
                         />
                     </div>

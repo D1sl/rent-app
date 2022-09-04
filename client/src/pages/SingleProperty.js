@@ -86,7 +86,7 @@ const SingleProperty = () => {
                         <div className='property-feature-column'>
                             <div className='property-feature-row'>
                                 <p className='feature-title'>City</p>
-                                <p className='feature-content'>{property.address.city}</p>
+                                <p className='feature-content'>{property.address.addressLevel2}</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ const SingleProperty = () => {
                     <table>
                         <tr>
                             <th>Location</th>
-                            <td>{property.address.address1}, {property.address.zipPostcode} {property.address.city}, {property.address.country}</td>
+                            <td>{property.address.addressLine1}{property.address.addressLine2 ? (<> {property.address.addressLine2}, </>) : (<>,</>)} {property.address.postalCode} {property.address.addressLevel2}, {property.address.country}</td>
                         </tr>
                         <tr>
                             <th>Living area</th>

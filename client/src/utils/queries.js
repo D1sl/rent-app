@@ -9,11 +9,12 @@ export const QUERY_PROPERTIES = gql`
             buildingType
             apartmentType
             address {
-                address1
-                address2
-                address3
-                zipPostcode
-                city
+                addressLine1
+                addressLine2
+                addressLevel1
+                addressLevel2
+                addressLevel3
+                postalCode
                 country
             }
         }
@@ -49,11 +50,12 @@ export const QUERY_PROPERTY = gql`
             televisionDetails
             availableFrom
             address {
-                address1
-                address2
-                address3
-                zipPostcode
-                city
+                addressLine1
+                addressLine2
+                addressLevel1
+                addressLevel2
+                addressLevel3
+                postalCode
                 country
             }
             belongsTo {
@@ -87,11 +89,12 @@ export const QUERY_USER = gql`
                 _id
                 rent
                 address {
-                    address1
-                    address2
-                    address3
-                    zipPostcode
-                    city
+                    addressLine1
+                    addressLine2
+                    addressLevel1
+                    addressLevel2
+                    addressLevel3
+                    postalCode
                     country
                 }
             }
@@ -112,11 +115,12 @@ export const QUERY_ME = gql`
             userStatus
             memberSince
             address {
-                address1
-                address2
-                address3
-                zipPostcode
-                city
+                addressLine1
+                addressLine2
+                addressLevel1
+                addressLevel2
+                addressLevel3
+                postalCode
                 country
             }
             properties {
@@ -124,11 +128,12 @@ export const QUERY_ME = gql`
                 propertyTitle
                 rent
                 address {
-                    address1
-                    address2
-                    address3
-                    zipPostcode
-                    city
+                    addressLine1
+                    addressLine2
+                    addressLevel1
+                    addressLevel2
+                    addressLevel3
+                    postalCode
                     country
                 }
             }

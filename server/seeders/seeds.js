@@ -11,9 +11,9 @@ db.once('open', async () => {
     // Create addresses
     function createAddress() {
         const address = {
-            address1: faker.address.streetAddress(true),
-            city: faker.address.city(),
-            zipPostcode: faker.address.zipCode(),
+            addressLine1: faker.address.streetAddress(true),
+            addressLevel2: faker.address.city(),
+            postalCode: faker.address.zipCode(),
             country: faker.address.country()
         }
 
@@ -35,7 +35,7 @@ db.once('open', async () => {
         
         // this works for creating an address
         const address = createAddress();
-        const bio = `Hello! My name is ${firstName}! I'm a landlord from ${address.city}. I've been letting since the 1990's so I'm experienced and I'm sure you'll have a wonderful time letting from me.`;
+        const bio = `Hello! My name is ${firstName}! I'm a landlord from ${address.addressLevel2}. I've been letting since the 1990's so I'm experienced and I'm sure you'll have a wonderful time letting from me.`;
 
         userData.push({ username, email, password, phone, firstName, lastName, address, bio, memberSince });
 
