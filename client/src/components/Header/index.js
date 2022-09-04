@@ -46,7 +46,7 @@ const Header = () => {
                                 <div className="button-text">Profile</div>
                                 <img src={emptyProfile} className="empty-profile" alt="grey person" />
                             </Link>
-                            <a href="/" onClick={logout}>Sign out</a>
+                            <a href="/" className='button login-button' onClick={logout}><span className="button-text">Sign out</span></a>
                         </>
                     ) : (
                         <Link to="/login">

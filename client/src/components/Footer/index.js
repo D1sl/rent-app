@@ -2,11 +2,18 @@ import './style.css';
 import emptyProfile from '../../assets/img/empty-profile.png';
 import magnifyingGlassIcon from '../../assets/img/magnifying-glass-icon.png';
 import userIcon from '../../assets/img/user-icon.png';
+import logoutIcon from '../../assets/img/logout.png';
 import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
 const Footer = () => {
+
+    const logout = event => {
+        event.preventDefault();
+        Auth.logout();
+    }
+
     return (
         <div className='main-footer'>
             <div className='footer-content-desktop'>
@@ -36,6 +43,12 @@ const Footer = () => {
                                         <span>Profile</span>
                                     </div>
                                 </Link>
+                                <Link to="/profile">
+                                    <a href="/" className="tab-button" onClick={logout}><span className="button-text"></span>
+                                        <img src={logoutIcon} className="tab-button-icon" alt="magnifying glass" />
+                                        <span>Sign Out</span>
+                                    </a>
+                                </Link>
                             </>
                         ) : (
                             <Link to="/login">
@@ -51,7 +64,7 @@ const Footer = () => {
 
                 </div>
             </div>
-        </div>
+        </div >
     )
 };
 
