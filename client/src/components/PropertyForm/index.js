@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_PROPERTY } from '../../utils/mutations';
+import { AddressAutofill } from '@mapbox/search-js-react';
 
 import { QUERY_ME_BASIC } from '../../utils/queries';
 
@@ -50,12 +51,18 @@ const PropertyForm = () => {
                 belongsTo: userData._id,
                 address
             }
-        })
-
+        }).then(
+            window.location.assign('/')            )
     }
+
 
     return (
         <>
+            <div>
+                <form className='form-stacked'>
+
+                </form>
+            </div>
             <form className='form-stacked' onSubmit={handleSubmit}>
                 <input
                     className='form-input form-input-standalone'
@@ -66,8 +73,59 @@ const PropertyForm = () => {
                     onChange={handleChange}
                 />
                 <h3>Address details</h3>
-                <div className='inputs'>
+
+
+
+                <AddressAutofill accessToken="pk.eyJ1IjoiYmVubW9saW5pIiwiYSI6ImNsN242N2t5MTA1ZmYzbnAzdjc4MTMwbW8ifQ.MXHyvIiPxoupFTIGgvFVhw">
                     <input
+                        className='form-input form-input-standalone'
+                        name="address1" 
+                        placeholder="Address" 
+                        type="text"
+                        autoComplete="address-line1"
+                        onChange={handleAddressChange}
+                    />
+                </AddressAutofill>
+                <div className='inputs'>
+
+                    <div className='inputs'>
+                        <input
+                            className='form-input input-group'
+                            name="apartment" 
+                            placeholder="Apartment number" 
+                            type="text"
+                            autoComplete="address-line2"
+                        />
+                        <input
+                            className='form-input input-group'
+                            name="city" 
+                            placeholder="City" 
+                            type="text"
+                            autoComplete="address-level2"
+                            onChange={handleAddressChange}
+                        />
+                        <input
+                            className='form-input input-group'
+                            name="country" 
+                            placeholder="Country" 
+                            type="text"
+                            autoComplete="country"
+                            onChange={handleAddressChange}
+                        />
+                        <input
+                            className='form-input input-group'
+                            name="zipPostcode" 
+                            placeholder="Postcode" 
+                            type="text"
+                            autoComplete="postal-code"
+                            onChange={handleAddressChange}
+                        />
+                    </div>
+
+
+
+
+                    {/* <input
                         className='form-input input-group'
                         name='address1'
                         type='text'
@@ -98,9 +156,9 @@ const PropertyForm = () => {
                         required
                         placeholder='Country'
                         onChange={handleAddressChange}
-                    />
+                    /> */}
                 </div>
-                <h3>Pricing</h3>
+                {/* <h3>Pricing</h3>
                 <div className='inputs'>
                     <input
                         className='form-input form-input-standalone'
@@ -110,7 +168,7 @@ const PropertyForm = () => {
                         placeholder='Rent'
                         onChange={handleAddressChange}
                     />
-                </div>
+                </div> */}
                 <button className='button btn-action'>
                     Submit
                 </button>
