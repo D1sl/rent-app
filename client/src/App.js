@@ -15,7 +15,6 @@ import NoMatch from './pages/NoMatch';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import NewProperty from './pages/NewProperty';
-import Home2 from './pages/Home2';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -52,7 +51,6 @@ function App() {
                 <Route path="" element={<Profile />} />
               </Route>
               <Route path="/signup" element={<Signup />} />
-              <Route path="/Home2" element={<Home2 />} />
               <Route path="/login" element={<Login />} />
               <Route path="/list-your-property" element={<NewProperty />} />
               <Route path="*" element={<NoMatch />} />

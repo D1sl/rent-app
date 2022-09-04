@@ -43,11 +43,11 @@ const Footer = () => {
                                         <span>Profile</span>
                                     </div>
                                 </Link>
-                                <Link to="/profile">
-                                    <a href="/" className="tab-button" onClick={logout}><span className="button-text"></span>
+                                <Link to="/" onClick={logout}>
+                                    <div className="tab-button"><span className="button-text"></span>
                                         <img src={logoutIcon} className="tab-button-icon" alt="magnifying glass" />
                                         <span>Sign Out</span>
-                                    </a>
+                                    </div>
                                 </Link>
                             </>
                         ) : (
