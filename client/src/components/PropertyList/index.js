@@ -9,6 +9,8 @@ const PropertyList = ({ properties, title }) => {
         return <h3>No properties yet</h3>
     }
 
+    console.log(properties)
+
     return (
         <div>
             <h3>{title}</h3>
@@ -21,8 +23,8 @@ const PropertyList = ({ properties, title }) => {
                                     <div className="property-list-image">
                                         <img src="https://api.lorem.space/image/house" className='property-list-image-element' alt='preview' />
                                     </div>
-                                    <h2 className="property-list-item-title">{property.address.address1}</h2>
-                                    <p className="property-list-item-description">{property.address.zipPostcode}{", "}{property.address.city}</p>
+                                    <h2 className="property-list-item-title">{property.address.addressLine1} {property.address.addressLine2}</h2>
+                                    <p className="property-list-item-description">{property.address.postalCode}{", "}{property.address.addressLevel2}</p>
                                     <p className="property-list-item-description">{"$"} {property.rent}</p>
                                 </div>
                             </Link>

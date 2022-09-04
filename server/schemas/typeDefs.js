@@ -3,13 +3,12 @@ const typeDefs = gql`
 
     type Address {
         _id: ID
-        address1: String
-        address2: String
-        address3: String
-        city: String
-        countyProvince: String
-        state: String
-        zipPostcode: String
+        addressLine1: String
+        addressLine2: String
+        addressLevel1: String
+        addressLevel2: String
+        addressLevel3: String
+        postalCode: String
         country: String
     }
 
@@ -72,9 +71,12 @@ const typeDefs = gql`
     }
 
     input AddressInput {
-        address1: String
-        zipPostcode: String
-        city: String
+        addressLine1: String
+        addressLine2: String
+        addressLevel1: String
+        addressLevel2: String
+        addressLevel3: String
+        postalCode: String
         country: String
     }
 

@@ -31,10 +31,13 @@ export const ADD_PROPERTY = gql`
           propertyTitle
           rent
           address {
-            address1
+            addressLine1
+            addressLine2
+            addressLevel1
+            addressLevel2
+            addressLevel3
+            postalCode
             country
-            zipPostcode
-            city
       }
     }
   }
