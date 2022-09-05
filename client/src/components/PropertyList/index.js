@@ -17,18 +17,23 @@ const PropertyList = ({ properties, title }) => {
             <div className='main-property-list'>
                 {properties &&
                     properties.map(property => (
-                        <div key={property._id}>
-                            <Link to={`/property/${property._id}`}>
-                                <div className="main-property-list-item">
-                                    <div className="property-list-image">
-                                        <img src="https://api.lorem.space/image/house" className='property-list-image-element' alt='preview' />
-                                    </div>
-                                    <h2 className="property-list-item-title">{property.address.addressLine1} {property.address.addressLine2}</h2>
-                                    <p className="property-list-item-description">{property.address.postalCode}{", "}{property.address.addressLevel2}</p>
-                                    <p className="property-list-item-description">{"$"} {property.rent}</p>
+                        <>
+                        {/* Only show properties that are listed as published */}
+                            {property.publishStatus === "published" ?
+                                <div key={property._id}>
+                                    <Link to={`/property/${property._id}`}>
+                                        <div className="main-property-list-item">
+                                            <div className="property-list-image">
+                                                <img src="https://api.lorem.space/image/house" className='property-list-image-element' alt='preview' />
+                                            </div>
+                                            <h2 className="property-list-item-title">{property.address.addressLine1} {property.address.addressLine2}</h2>
+                                            <p className="property-list-item-description">{property.address.postalCode}{", "}{property.address.addressLevel2}</p>
+                                            <p className="property-list-item-description">{"$"} {property.rent}</p>
+                                        </div>
+                                    </Link>
                                 </div>
-                            </Link>
-                        </div>
+                                : null}
+                        </>
                     ))}
             </div>
         </div>

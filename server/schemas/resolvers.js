@@ -1,4 +1,4 @@
-const { User, Address, Property } = require('../models');
+const { User, Property, Building } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 const errorMessage = {
@@ -37,6 +37,14 @@ const resolvers = {
             return Property.findOne({ _id })
             .populate('belongsTo')
         },
+        building: async (parent, { _id }) => {
+            return Building.findOne({ _id })
+        },
+        // Finds all buildings in a specific address
+        buildings: async(parent, { address }) => {
+            const params = address ? {"address.addressLine1": address} : {};
+            return Building.find(params)
+        }
     },
     Mutation: {
         addUser: async (parent, args) => {
@@ -72,6 +80,15 @@ const resolvers = {
                 );
 
                 return property;
+            }
+
+            throw new AuthenticationError(errorMessage.noAuth);
+        },
+        addBuilding: async (parent, args, context) => {
+            if (context.user) {
+                const building = await Building.create({ ...args })
+
+                return building;
             }
 
             throw new AuthenticationError(errorMessage.noAuth);

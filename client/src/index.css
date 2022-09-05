@@ -38,6 +38,7 @@ a {
   border: 1px solid #982222 !important;
   font-weight: 600;
   border-radius: 5px;
+  min-width: 80px;
 }
 
 .btn-action:hover {
@@ -73,6 +74,13 @@ form {
 input {
   /* width: 100px; */
   /* box-sizing: border-box; */
+}
+
+.input-large { 
+  border-radius: 15px!important;
+  padding: 25px!important;
+  font-size: 20px!important;
+  height: auto!important;
 }
 
 .inputs {

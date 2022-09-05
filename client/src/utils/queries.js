@@ -8,6 +8,7 @@ export const QUERY_PROPERTIES = gql`
             rent
             buildingType
             apartmentType
+            publishStatus
             address {
                 addressLine1
                 addressLine2
@@ -49,6 +50,7 @@ export const QUERY_PROPERTY = gql`
             otherConditions
             televisionDetails
             availableFrom
+            publishStatus
             address {
                 addressLine1
                 addressLine2
@@ -152,11 +154,12 @@ export const QUERY_ME_BASIC = gql`
                 _id
                 rent
                 address {
-                    address1
-                    address2
-                    address3
-                    zipPostcode
-                    city
+                    addressLine1
+                    addressLine2
+                    addressLevel1
+                    addressLevel2
+                    addressLevel3
+                    postalCode
                     country
                 }
             }

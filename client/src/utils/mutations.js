@@ -25,11 +25,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PROPERTY = gql`
-    mutation addProperty($propertyTitle: String!, $address: AddressInput!) {
-        addProperty(propertyTitle: $propertyTitle, address: $address) {
+    mutation addProperty($propertyTitle: String, $address: AddressInput, $publishStatus: String) {
+        addProperty(propertyTitle: $propertyTitle, address: $address, publishStatus: $publishStatus) {
           _id
           propertyTitle
           rent
+          publishStatus
           address {
             addressLine1
             addressLine2

@@ -12,6 +12,22 @@ const typeDefs = gql`
         country: String
     }
 
+    type Building {
+        _id: ID
+        buildingType: String
+        buildingTypeSpec: String
+        yearBuilt: String
+        floors: String
+        apartments: String
+        heatingMethod: String
+        constructionMaterial: String
+        plotOwnership: String
+        wallStructure: String
+        elevator: String
+        sauna: String
+        address: Address
+    }
+
     type Property {
         _id: ID
         propertyTitle: String
@@ -40,6 +56,7 @@ const typeDefs = gql`
         otherConditions: String
         availableFrom: String
         televisionDetails: String
+        publishStatus: String
     }
 
     type User {
@@ -63,6 +80,8 @@ const typeDefs = gql`
         user(username: String!): User
         properties(belongsTo: String): [Property]
         property(_id: ID!): Property
+        buildings(address: String): [Building]
+        building(address: AddressInput): Building 
     }
 
     type Auth {
@@ -82,10 +101,10 @@ const typeDefs = gql`
 
     type Mutation {
         updateUser(_id: ID!, username: String, email: String, password: String, firstName: String, lastName: String, phone: String): User
-
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        addProperty(propertyTitle: String!, address: AddressInput!): Property
+        addBuilding(buildingType: String!, yearBuilt: String!, address: AddressInput!): Building
+        addProperty(propertyTitle: String, publishStatus: String, address: AddressInput): Property
     }
 `;
 
