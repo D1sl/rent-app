@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const addressSchema = require('./Address');
-const userSchema = require('./User');
 
 const propertySchema = new Schema(
     {
@@ -104,6 +103,14 @@ const propertySchema = new Schema(
         televisionDetails: {
             type: String,
             required: false
+        },
+        publishStatus: {
+            type: String,
+            required: false
+        },
+        building: {
+            type: Schema.Types.ObjectId,
+            ref: 'Building'
         },
         address: addressSchema,
     },

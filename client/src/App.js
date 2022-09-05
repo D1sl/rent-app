@@ -14,6 +14,8 @@ import SingleProperty from './pages/SingleProperty';
 import NoMatch from './pages/NoMatch';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+
+// New Property Wizard
 import NewProperty from './pages/NewProperty';
 
 const httpLink = createHttpLink({

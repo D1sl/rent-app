@@ -87,7 +87,8 @@ nav {
         position: fixed;
         background-color: white;
         z-index: 100;
-        width: calc(100vw - 40px);
+        width: 100vw;
+        box-sizing: border-box;
     }
 
     .main-header-left {

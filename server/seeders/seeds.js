@@ -104,6 +104,7 @@ db.once('open', async () => {
         const televisionDetails = "Cable TV";
         const availableFrom = "05/22/2022";
         const address = createAddress();
+        const publishStatus = "published";
 
         const createdProperty = await Property.create(
             {
@@ -132,7 +133,8 @@ db.once('open', async () => {
                 miscDetails,
                 otherConditions,
                 availableFrom,
-                televisionDetails
+                televisionDetails,
+                publishStatus
             });
 
         const updatedUser = await User.updateOne(

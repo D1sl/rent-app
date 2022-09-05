@@ -2,11 +2,8 @@ import PropertyForm from '../components/PropertyForm'
 
 const NewProperty = () => {
     return (
-        <div className="container">
-            <div className="mobile-container">
-                <h1>New Property</h1>
+        <div className="fullscreen-container">
                 <PropertyForm />
-            </div>
         </div>
     )
 };
