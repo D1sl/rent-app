@@ -3,9 +3,9 @@
     background-color: rgb(255, 255, 255);
     padding: 20px 0 0 20px;
     border-top: 1px solid #D9D9D9;
-
     bottom: 0;
     height: 2.5rem;
+    z-index: 100;
 }
 
 .footer-content {
@@ -43,7 +43,6 @@
 
 @media screen and (max-width: 740px) {
     .main-footer {
-        z-index: 100;
         overflow: hidden;
         background-color: white;
         position: fixed;

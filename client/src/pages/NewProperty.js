@@ -1,4 +1,4 @@
-import PropertyForm from '../components/PropertyForm'
+import PropertyForm from '../components/PropertyForm';
 
 const NewProperty = () => {
     return (

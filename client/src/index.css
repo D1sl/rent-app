@@ -30,6 +30,7 @@ a {
   background-color: #FFF;
   height: 40px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-action {

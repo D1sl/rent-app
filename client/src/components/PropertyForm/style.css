@@ -1,38 +1,50 @@
-.form-flex {
+.form-fullscreen {
     display: flex;
     position: absolute;
     top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
-    align-items: center;
-    overflow: hidden;
+    background-color: antiquewhite;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 200;
 }
 
-.form-right textarea {
-    resize: none;
+.form-fullscreen::-webkit-scrollbar {
+    display: none;
+}
+
+mapbox-address-autofill {
+    z-index: 99999;
 }
 
 .form-left {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    flex: 50%;
-    height: 100%;
-    width: 100%;
-    padding: 40px;
-    box-sizing: border-box;
-    background: rgb(41,2,31);
-    background: linear-gradient(180deg, rgba(41,2,31,1) 0%, rgba(224,20,77,1) 80%, rgba(255,119,157,1) 100%);
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: aqua;
+    width: 50vw;
+    height: 100vh;
+    background: rgb(41, 2, 31);
+    background: linear-gradient(180deg, rgba(41, 2, 31, 1) 0%, rgba(224, 20, 77, 1) 80%, rgba(255, 119, 157, 1) 100%);
+}
 
+.form-logo {
+    position: absolute;
+    padding: 20px;
 }
 
 .form-title {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 0 0 100px 0;
+    padding: 30px;
     box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .form-title h1 {
@@ -44,82 +56,118 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 50%;
-    height: 100%;
     background-color: white;
+    width: 50vw;
+    height: 100vh;
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.6);
 }
 
-.form-right h2 {
-    margin: 0;
+.form-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 70px;
+    padding: 20px;
 }
 
 .form-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 40px;
+    padding: 50px;
     box-sizing: border-box;
 }
 
-.form-tools {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    padding: 20px;
-}
-
-.propertySetupForm {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.form-input-standalone {
+    margin-bottom: 20px;
 }
 
 .form-controls {
-    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 50vw;
+    height: 70px;
     border-top: solid 1px #ededed;
+    background-color: white;
+    z-index: 9999;
+}
+
+.statusbar {
+    position: absolute;
+    height: 2px;
+    background-color: #DC3333;
+    transition: all 1s ease-in-out;
+}
+
+.form-buttons {
+    display: flex;
+    height: 100%;
     justify-content: space-between;
-    padding: 20px;
+    align-items: center;
+    padding: 0 20px;
 }
 
-.amenity-item {
-    padding: 20px;
-    border: 1px solid #ededed;
-    border-radius: 10px;
+.button:disabled {
+    background-color: #bababa;
+    border: 1px solid #bababa!important;
+    color: #e5e5e5;
 }
 
-.propCheckbox:checked  .amenity-item {
-    /* background-color: black; */
+.button:disabled:hover {
+    background-color: #bababa!important;
+    cursor: default;
 }
 
-@media screen and (max-width: 740px) {
-    .form-flex {
-        z-index: 9999;
+@media screen and (max-width: 800px) {
+
+    .form-fullscreen {
         flex-direction: column;
-        height: calc(100vh - 70px);
-        overflow: scroll;
     }
 
-    .overflow-container {
-        width: 200px;
-        box-sizing: border-box;
-        /* width: 100px; */
+    .form-left {
+        position: fixed;
+        justify-content: flex-start;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+    }
+    
+    .form-logo {
+        width: 80px;
+        object-fit: contain;
+    }
+
+    .form-title {
+        height: 30vh;
+        padding: 50px 20px 20px 20px;
+    }
+
+    .form-title h1 {
+        font-size: 30px;
     }
 
     .form-right {
-        width: 100%;
-        padding: 0;
+        position: absolute;
+        justify-content: flex-start;
+        top: 0;
+        width: 100vw;
+        margin-top: 30vh;
+        height: auto;
+        min-height: 70vh;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .form-content {
+        padding-bottom: 120px;
+    }
+
+    .form-top {
+        position: absolute;
+        right: 0;
     }
 
     .form-controls {
         position: fixed;
-        background-color: white;
+        bottom: 0;
         width: 100vw;
-        z-index: 999;
-        bottom: 0px;
     }
 }
