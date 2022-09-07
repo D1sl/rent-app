@@ -35,6 +35,7 @@ const PropertyForm = () => {
             ...formState,
             [name]: value
         });
+        validateForm();
     }
 
     function handleAddressChange(event) {
@@ -65,13 +66,31 @@ const PropertyForm = () => {
     // Form Pagination
     const [step, setStep] = useState(1);
 
+    let statusPercentage = "0%"
+
+    if (step === 1) {
+        statusPercentage = "5%"
+    } else if (step === 2) {
+        statusPercentage = "35%"
+    } else if (step === 3) {
+        statusPercentage = "65%"
+    }
+
+    let buttonDisabled;
+
+    function validateForm() {
+        if (step === 1 & !formState.propertyTitle) {
+            console.log("fired")
+            return true
+        } else if (step === 2 & !addressState.addressLine1) {
+            return true
+        }
+    }
+
     return (
         <>
-            <div className='form-flex'>
+            <div className='form-fullscreen'>
                 <div className='form-left'>
-                    <Link to="/">
-                        <img src={whiteLogo} className="logo" alt='RentApp Logo' />
-                    </Link>
                     <div className='form-title'>
                         {step === 1 ? (
                             <h1>Give your property a nice title</h1>
@@ -85,134 +104,130 @@ const PropertyForm = () => {
                     </div>
                 </div>
                 <div className='form-right'>
-                    <div className='form-tools'>
+                    <div className='form-top'>
                         <Link to="/profile">
                             <button className='button'>Cancel</button>
                         </Link>
                     </div>
                     <div className='form-content'>
-                        <div className='propertySetupForm'>
-                            <form className='form-stacked' onSubmit={handleSubmit}>
-                                {step === 1 ? (
-                                    <>
-                                        <h2>Create a Title</h2>
-                                        <p>In a few words, describe your property and what makes it special.</p>
-                                        <textarea
-                                            rows="3"
-                                            className='form-input form-input-standalone input-large'
-                                            name='propertyTitle'
-                                            type='text'
-                                            required
-                                            placeholder='A well lit flat at the heart of San Francisco'
-                                            onChange={handleChange}
-                                            value={formState.propertyTitle}
+                        <form onSubmit={handleSubmit}>
+                            {step === 1 ? (
+                                <>
+                                    <h2>Create a Title</h2>
+                                    <p>In a few words, describe your property and what makes it special.</p>
+                                    <textarea
+                                        rows="3"
+                                        className='form-input form-input-standalone input-large'
+                                        name='propertyTitle'
+                                        type='text'
+                                        required
+                                        placeholder='A well lit flat at the heart of San Francisco'
+                                        onChange={handleChange}
+                                        value={formState.propertyTitle}
+                                    />
+                                </>
+                            ) : null}
+
+                            {step === 2 ? (
+                                <>
+                                    <h2>Enter an Address</h2>
+                                    <AddressAutofill
+                                        accessToken="pk.eyJ1IjoiYmVubW9saW5pIiwiYSI6ImNsN242N2t5MTA1ZmYzbnAzdjc4MTMwbW8ifQ.MXHyvIiPxoupFTIGgvFVhw">
+                                        <input
+                                            className='form-input form-input-standalone'
+                                            name="addressLine1"
+                                            placeholder="Address"
+                                            type="text"
+                                            autoComplete="address-line1"
+                                            onChange={handleAddressChange}
+                                            value={addressState.addressLine1}
                                         />
-                                    </>
-                                ) : null}
+                                    </AddressAutofill>
+                                    <div className='inputs'>
+                                        <input
+                                            className='form-input input-group'
+                                            name="addressLine2"
+                                            placeholder="Apartment"
+                                            type="text"
+                                            autoComplete="address-line2"
+                                            onChange={handleAddressChange}
+                                            value={addressState.addressLine2}
+                                        />
+                                        <input
+                                            className='form-input input-group'
+                                            name="addressLevel2"
+                                            placeholder="City"
+                                            type="text"
+                                            autoComplete="address-level2"
+                                            onChange={handleAddressChange}
+                                            value={addressState.addressLevel2}
+                                        />
+                                        <input
+                                            className='form-input input-group'
+                                            name="postalCode"
+                                            placeholder="Postal Code or Zip"
+                                            type="text"
+                                            autoComplete="postal-code"
+                                            onChange={handleAddressChange}
+                                            value={addressState.postalCode}
+                                        />
+                                        <input
+                                            className='form-input input-group'
+                                            name="country"
+                                            placeholder="Country"
+                                            type="text"
+                                            autoComplete="country"
+                                            onChange={handleAddressChange}
+                                            value={addressState.country}
+                                        />
+                                    </div>
+                                </>
+                            ) : null}
 
-                                {step === 2 ? (
-                                    <>
-                                        <h3>Address details</h3>
-                                        <div className='overflow-container'>
+                            {step === 3 ? (
+                                <>
+                                    <h1>{formState.propertyTitle}</h1>
+                                    <p>
+                                        {addressState.addressLine1} {addressState.addressLine2}, {addressState.postalCode} {addressState.addressLevel2}
+                                    </p>
+                                    <button className='button btn-action'>
+                                        Publish
+                                    </button>
+                                </>
+                            ) : null}
 
-                                            <AddressAutofill accessToken="pk.eyJ1IjoiYmVubW9saW5pIiwiYSI6ImNsN242N2t5MTA1ZmYzbnAzdjc4MTMwbW8ifQ.MXHyvIiPxoupFTIGgvFVhw">
-                                                <input
-                                                    className='form-input form-input-standalone'
-                                                    name="addressLine1"
-                                                    placeholder="Address"
-                                                    type="text"
-                                                    autoComplete="address-line1"
-                                                    onChange={handleAddressChange}
-                                                    value={addressState.addressLine1}
-                                                />
-                                            </AddressAutofill>
-                                        </div>
-                                        <div className='inputs'>
-                                            <input
-                                                className='form-input input-group'
-                                                name="addressLine2"
-                                                placeholder="Apartment"
-                                                type="text"
-                                                autoComplete="address-line2"
-                                                onChange={handleAddressChange}
-                                                value={addressState.addressLine2}
-                                            />
-                                            <input
-                                                className='form-input input-group'
-                                                name="addressLevel2"
-                                                placeholder="City"
-                                                type="text"
-                                                autoComplete="address-level2"
-                                                onChange={handleAddressChange}
-                                                value={addressState.addressLevel2}
-                                            />
-                                            <input
-                                                className='form-input input-group'
-                                                name="postalCode"
-                                                placeholder="Postal Code or Zip"
-                                                type="text"
-                                                autoComplete="postal-code"
-                                                onChange={handleAddressChange}
-                                                value={addressState.postalCode}
-                                            />
-                                            <input
-                                                className='form-input input-group'
-                                                name="country"
-                                                placeholder="Country"
-                                                type="text"
-                                                autoComplete="country"
-                                                onChange={handleAddressChange}
-                                                value={addressState.country}
-                                            />
-                                        </div>
-                                    </>
-                                ) : null}
-
-                                {step === 3 ? (
-                                    <>
-                                        {/* <div className='amenity-item'>
-                                        <input type="checkbox" name="elevator" className='propCheckbox' />
-                                        <label for="elevator">Elevator</label>
-                                    </div> */}
-                                        <h1>{formState.propertyTitle}</h1>
-                                        <p>
-                                            {addressState.addressLine1} {addressState.addressLine2}, {addressState.postalCode} {addressState.addressLevel2}
-                                        </p>
-                                        <button className='button btn-action'>
-                                            Publish
-                                        </button>
-                                    </>
-                                ) : null}
-                            </form>
-                        </div>
-
+                        </form>
                     </div>
                     <div className='form-controls'>
-                        <div>
-                            {step === 1 ? null : (
-                                <button
-                                    className='button btn-action'
-                                    onClick={() => setStep(step - 1)}
-                                    disabled={step < 2}
-                                >Back</button>
-                            )}
-                        </div>
-                        <div>
-                            {step === 3 ? null : (
-                                <button
-                                    className='button btn-action'
-                                    onClick={() => setStep(step + 1)}
-                                    disabled={step > 2}
-                                >Next</button>
-                            )}
+                        <div
+                            className='statusbar'
+                            style={{ width: statusPercentage }}
+                        ></div>
+                        <div className='form-buttons'>
+                            <div>
+                                {step === 1 ? null : (
+                                    <button
+                                        className='button btn-action'
+                                        onClick={() => setStep(step - 1)}
+                                        disabled={step < 2}
+                                    >Back</button>
+                                )}
+                            </div>
+                            <div>
+                                {step === 3 ? null : (
+                                    <button
+                                        className='button btn-action'
+                                        onClick={() => {
+                                            setStep(step + 1)
+                                        }}
+                                        disabled={validateForm()}
+                                    >Next</button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-            {error && <p>Something went wrong.</p>}
         </>
     )
 };
