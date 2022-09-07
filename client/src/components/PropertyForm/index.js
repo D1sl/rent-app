@@ -3,7 +3,11 @@ import { useQuery, useMutation } from '@apollo/client';
 import { ADD_PROPERTY } from '../../utils/mutations';
 import { AddressAutofill } from '@mapbox/search-js-react';
 
-import whiteLogo from '../../assets/img/logo-white.png';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import elevatorIcon from '../../assets/img/elevator-icon.png';
+import balconyIcon from '../../assets/img/balcony-icon.png';
+import saunaIcon from '../../assets/img/sauna-icon.png';
 
 import './style.css';
 
@@ -74,9 +78,9 @@ const PropertyForm = () => {
         statusPercentage = "35%"
     } else if (step === 3) {
         statusPercentage = "65%"
+    } else if (step === 4) {
+        statusPercentage = "100%"
     }
-
-    let buttonDisabled;
 
     function validateForm() {
         if (step === 1 & !formState.propertyTitle) {
@@ -87,20 +91,78 @@ const PropertyForm = () => {
         }
     }
 
+    const animPrefs = {
+        initial: {
+            y: 100,
+            opacity: 0
+        },
+        animate: {
+            y: 0,
+            opacity: 1
+        },
+        transition: {
+            duration: 0.5,
+            ease: "backInOut"
+        },
+        exit: {
+            y: -100,
+            opacity: 0
+        }
+    }
+
+    const motionVariants = {
+        show: {
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.5
+            }
+        }
+    }
+
+    const motionItem = {
+        hidden: { opacity: 0 },
+        show: { opacity: 1, y: 0 }
+    }
+
     return (
         <>
             <div className='form-fullscreen'>
                 <div className='form-left'>
                     <div className='form-title'>
-                        {step === 1 ? (
-                            <h1>Give your property a nice title</h1>
-                        ) : null}
-                        {step === 2 ? (
-                            <h1>Where is it located?</h1>
-                        ) : null}
-                        {step === 3 ? (
-                            <h1>We are ready to publish this listing!</h1>
-                        ) : null}
+                        <AnimatePresence exitBeforeEnter>
+                            {step === 1 ? (
+                                <motion.h1
+                                    key={step}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >Give your property a nice title</motion.h1>
+                            ) : null}
+                            {step === 2 ? (
+                                <motion.h1
+                                    key={step}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >Where is it located?</motion.h1>
+                            ) : null}
+                            {step === 3 ? (
+                                <motion.h1
+                                    key={step}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >What kinds of amenities does the building offer?</motion.h1>
+                            ) : null}
+                            {step === 4 ? (
+                                <motion.h1
+                                    key={step}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >We are ready to publish this listing!</motion.h1>
+                            ) : null}
+                        </AnimatePresence>
                     </div>
                 </div>
                 <div className='form-right'>
@@ -111,91 +173,172 @@ const PropertyForm = () => {
                     </div>
                     <div className='form-content'>
                         <form onSubmit={handleSubmit}>
-                            {step === 1 ? (
-                                <>
-                                    <h2>Create a Title</h2>
-                                    <p>In a few words, describe your property and what makes it special.</p>
-                                    <textarea
-                                        rows="3"
-                                        className='form-input form-input-standalone input-large'
-                                        name='propertyTitle'
-                                        type='text'
-                                        required
-                                        placeholder='A well lit flat at the heart of San Francisco'
-                                        onChange={handleChange}
-                                        value={formState.propertyTitle}
-                                    />
-                                </>
-                            ) : null}
+                            <AnimatePresence exitBeforeEnter>
 
-                            {step === 2 ? (
-                                <>
-                                    <h2>Enter an Address</h2>
-                                    <AddressAutofill
-                                        accessToken="pk.eyJ1IjoiYmVubW9saW5pIiwiYSI6ImNsN242N2t5MTA1ZmYzbnAzdjc4MTMwbW8ifQ.MXHyvIiPxoupFTIGgvFVhw">
-                                        <input
-                                            className='form-input form-input-standalone'
-                                            name="addressLine1"
-                                            placeholder="Address"
-                                            type="text"
-                                            autoComplete="address-line1"
-                                            onChange={handleAddressChange}
-                                            value={addressState.addressLine1}
+                                {step === 1 ? (
+                                    <motion.div
+                                        key={step}
+                                        initial={animPrefs.initial}
+                                        animate={animPrefs.animate}
+                                        transition={animPrefs.transition}
+                                        exit={animPrefs.exit}
+                                    >
+                                        <h2>Create a Title</h2>
+                                        <p>In a few words, describe your property and what makes it special.</p>
+                                        <textarea
+                                            rows="3"
+                                            className='form-input form-input-standalone input-large'
+                                            name='propertyTitle'
+                                            type='text'
+                                            required
+                                            placeholder='A well lit flat at the heart of San Francisco'
+                                            onChange={handleChange}
+                                            value={formState.propertyTitle}
                                         />
-                                    </AddressAutofill>
-                                    <div className='inputs'>
-                                        <input
-                                            className='form-input input-group'
-                                            name="addressLine2"
-                                            placeholder="Apartment"
-                                            type="text"
-                                            autoComplete="address-line2"
-                                            onChange={handleAddressChange}
-                                            value={addressState.addressLine2}
-                                        />
-                                        <input
-                                            className='form-input input-group'
-                                            name="addressLevel2"
-                                            placeholder="City"
-                                            type="text"
-                                            autoComplete="address-level2"
-                                            onChange={handleAddressChange}
-                                            value={addressState.addressLevel2}
-                                        />
-                                        <input
-                                            className='form-input input-group'
-                                            name="postalCode"
-                                            placeholder="Postal Code or Zip"
-                                            type="text"
-                                            autoComplete="postal-code"
-                                            onChange={handleAddressChange}
-                                            value={addressState.postalCode}
-                                        />
-                                        <input
-                                            className='form-input input-group'
-                                            name="country"
-                                            placeholder="Country"
-                                            type="text"
-                                            autoComplete="country"
-                                            onChange={handleAddressChange}
-                                            value={addressState.country}
-                                        />
-                                    </div>
-                                </>
-                            ) : null}
+                                    </motion.div>
+                                ) : null}
 
-                            {step === 3 ? (
-                                <>
-                                    <h1>{formState.propertyTitle}</h1>
-                                    <p>
-                                        {addressState.addressLine1} {addressState.addressLine2}, {addressState.postalCode} {addressState.addressLevel2}
-                                    </p>
-                                    <button className='button btn-action'>
-                                        Publish
-                                    </button>
-                                </>
-                            ) : null}
+                                {step === 2 ? (
+                                    <motion.div
+                                        key={step}
+                                        initial={animPrefs.initial}
+                                        animate={animPrefs.animate}
+                                        transition={animPrefs.transition}
+                                        exit={animPrefs.exit}
+                                    >
+                                        <h2>Enter an Address</h2>
+                                        <AddressAutofill
+                                            accessToken="pk.eyJ1IjoiYmVubW9saW5pIiwiYSI6ImNsN242N2t5MTA1ZmYzbnAzdjc4MTMwbW8ifQ.MXHyvIiPxoupFTIGgvFVhw">
+                                            <input
+                                                className='form-input form-input-standalone'
+                                                name="addressLine1"
+                                                placeholder="Address"
+                                                type="text"
+                                                autoComplete="address-line1"
+                                                onChange={handleAddressChange}
+                                                value={addressState.addressLine1}
+                                            />
+                                        </AddressAutofill>
+                                        <div className='inputs'>
+                                            <input
+                                                className='form-input input-group'
+                                                name="addressLine2"
+                                                placeholder="Apartment"
+                                                type="text"
+                                                autoComplete="address-line2"
+                                                onChange={handleAddressChange}
+                                                value={addressState.addressLine2}
+                                            />
+                                            <input
+                                                className='form-input input-group'
+                                                name="addressLevel2"
+                                                placeholder="City"
+                                                type="text"
+                                                autoComplete="address-level2"
+                                                onChange={handleAddressChange}
+                                                value={addressState.addressLevel2}
+                                            />
+                                            <input
+                                                className='form-input input-group'
+                                                name="postalCode"
+                                                placeholder="Postal Code or Zip"
+                                                type="text"
+                                                autoComplete="postal-code"
+                                                onChange={handleAddressChange}
+                                                value={addressState.postalCode}
+                                            />
+                                            <input
+                                                className='form-input input-group'
+                                                name="country"
+                                                placeholder="Country"
+                                                type="text"
+                                                autoComplete="country"
+                                                onChange={handleAddressChange}
+                                                value={addressState.country}
+                                            />
+                                        </div>
+                                    </motion.div>
+                                ) : null}
 
+                                {step === 3 ? (
+                                    <motion.div
+                                        key={step}
+                                        initial={animPrefs.initial}
+                                        animate={animPrefs.animate}
+                                        transition={animPrefs.transition}
+                                        exit={animPrefs.exit}
+                                    >
+                                        <h2>Amenities</h2>
+                                        <motion.div
+                                            variants={motionVariants}
+                                            initial="hidden"
+                                            animate="show"
+                                            className='amenities'
+                                        >
+                                            <motion.label
+                                                variants={motionItem}
+                                                initial={{ opacity: 0, y: 100 }}
+                                                className='amenity-item'
+                                            >
+                                                <input type="checkbox" className='amenity-checkbox' />
+                                                <div className='amenity-item-content'>
+                                                    <div className='amenity-tickmark'></div>
+                                                    <div className='amenity-icon'>
+                                                        <img src={elevatorIcon} className="amenity-icon-image" alt="elevator" />
+                                                    </div>
+                                                    <div className='amenity-name'>Elevator</div>
+                                                </div>
+                                            </motion.label>
+                                            <motion.label
+                                                variants={motionItem}
+                                                initial={{ opacity: 0, y: 100 }}
+                                                className='amenity-item'
+                                            >
+                                                <input type="checkbox" className='amenity-checkbox' />
+                                                <div className='amenity-item-content'>
+                                                    <div className='amenity-tickmark'></div>
+                                                    <div className='amenity-icon'>
+                                                        <img src={balconyIcon} className="amenity-icon-image" alt="balcony" />
+                                                    </div>
+                                                    <div className='amenity-name'>Balcony</div>
+                                                </div>
+                                            </motion.label>
+                                            <motion.label
+                                                variants={motionItem}
+                                                className='amenity-item'
+                                                initial={{ opacity: 0, y: 100 }}
+                                            >
+                                                <input type="checkbox" className='amenity-checkbox' />
+                                                <div className='amenity-item-content'>
+                                                    <div className='amenity-tickmark'></div>
+                                                    <div className='amenity-icon'>
+                                                        <img src={saunaIcon} className="amenity-icon-image" alt="sauna" />
+                                                    </div>
+                                                    <div className='amenity-name'>Sauna</div>
+                                                </div>
+                                            </motion.label>
+                                        </motion.div>
+                                    </motion.div>
+                                ) : null}
+
+                                {step === 4 ? (
+                                    <motion.div
+                                        key={step}
+                                        initial={animPrefs.initial}
+                                        animate={animPrefs.animate}
+                                        transition={animPrefs.transition}
+                                        exit={animPrefs.exit}
+                                    >
+                                        <h1>{formState.propertyTitle}</h1>
+                                        <p>
+                                            {addressState.addressLine1} {addressState.addressLine2}, {addressState.postalCode} {addressState.addressLevel2}
+                                        </p>
+                                        <button className='button btn-action'>
+                                            Publish
+                                        </button>
+                                    </motion.div>
+                                ) : null}
+                            </AnimatePresence>
                         </form>
                     </div>
                     <div className='form-controls'>
@@ -214,7 +357,7 @@ const PropertyForm = () => {
                                 )}
                             </div>
                             <div>
-                                {step === 3 ? null : (
+                                {step === 4 ? null : (
                                     <button
                                         className='button btn-action'
                                         onClick={() => {
