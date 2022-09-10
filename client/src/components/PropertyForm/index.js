@@ -69,6 +69,7 @@ const PropertyForm = () => {
 
     // Form Pagination
     const [step, setStep] = useState(1);
+    const [subStep, setSubStep] = useState(1);
 
     let statusPercentage = "0%"
 
@@ -152,7 +153,7 @@ const PropertyForm = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                >What kinds of amenities does the building offer?</motion.h1>
+                                >What kinds of amenities are included in the rental?</motion.h1>
                             ) : null}
                             {step === 4 ? (
                                 <motion.h1
@@ -160,7 +161,7 @@ const PropertyForm = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                >We are ready to publish this listing!</motion.h1>
+                                >Now tell us about the kitchen</motion.h1>
                             ) : null}
                         </AnimatePresence>
                     </div>
@@ -275,7 +276,9 @@ const PropertyForm = () => {
                                             animate="show"
                                             className='amenities'
                                         >
+
                                             <motion.label
+                                                key="balcony"
                                                 variants={motionItem}
                                                 initial={{ opacity: 0, y: 100 }}
                                                 className='amenity-item'
@@ -286,42 +289,166 @@ const PropertyForm = () => {
                                                     <div className='amenity-icon'>
                                                         <img src={elevatorIcon} className="amenity-icon-image" alt="elevator" />
                                                     </div>
-                                                    <div className='amenity-name'>Elevator</div>
-                                                </div>
-                                            </motion.label>
-                                            <motion.label
-                                                variants={motionItem}
-                                                initial={{ opacity: 0, y: 100 }}
-                                                className='amenity-item'
-                                            >
-                                                <input type="checkbox" className='amenity-checkbox' />
-                                                <div className='amenity-item-content'>
-                                                    <div className='amenity-tickmark'></div>
-                                                    <div className='amenity-icon'>
-                                                        <img src={balconyIcon} className="amenity-icon-image" alt="balcony" />
-                                                    </div>
                                                     <div className='amenity-name'>Balcony</div>
                                                 </div>
+                                                <div className='amenity-item-details'>
+                                                    <input
+                                                        className='form-input form-input-standalone'
+                                                        placeholder="Balcony details"
+                                                        type="text"
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
                                             </motion.label>
+
                                             <motion.label
+                                                key="dishwasher"
                                                 variants={motionItem}
-                                                className='amenity-item'
                                                 initial={{ opacity: 0, y: 100 }}
+                                                className='amenity-item'
+                                            >
+                                                <input type="checkbox" className='amenity-checkbox' />
+                                                <div className='amenity-item-content-nodetails'>
+                                                    <div className='amenity-tickmark'></div>
+                                                    <div className='amenity-icon'>
+                                                        <img src={elevatorIcon} className="amenity-icon-image" alt="elevator" />
+                                                    </div>
+                                                    <div className='amenity-name'>Air Conditioning</div>
+                                                </div>
+                                            </motion.label>
+
+                                            <motion.label
+                                                key="dishwasher"
+                                                variants={motionItem}
+                                                initial={{ opacity: 0, y: 100 }}
+                                                className='amenity-item'
                                             >
                                                 <input type="checkbox" className='amenity-checkbox' />
                                                 <div className='amenity-item-content'>
                                                     <div className='amenity-tickmark'></div>
                                                     <div className='amenity-icon'>
-                                                        <img src={saunaIcon} className="amenity-icon-image" alt="sauna" />
+                                                        <img src={elevatorIcon} className="amenity-icon-image" alt="elevator" />
                                                     </div>
-                                                    <div className='amenity-name'>Sauna</div>
+                                                    <div className='amenity-name'>Storage</div>
+                                                </div>
+                                                <div className='amenity-item-details'>
+                                                    <input
+                                                        className='form-input form-input-standalone'
+                                                        placeholder="Storage details"
+                                                        type="text"
+                                                        onChange={handleChange}
+                                                    />
                                                 </div>
                                             </motion.label>
+
+                                            <motion.label
+                                                key="dishwasher"
+                                                variants={motionItem}
+                                                initial={{ opacity: 0, y: 100 }}
+                                                className='amenity-item'
+                                            >
+                                                <input type="checkbox" className='amenity-checkbox' />
+                                                <div className='amenity-item-content-nodetails'>
+                                                    <div className='amenity-tickmark'></div>
+                                                    <div className='amenity-icon'>
+                                                        <img src={elevatorIcon} className="amenity-icon-image" alt="elevator" />
+                                                    </div>
+                                                    <div className='amenity-name'>Internet included</div>
+                                                </div>
+                                            </motion.label>
+
                                         </motion.div>
                                     </motion.div>
                                 ) : null}
 
                                 {step === 4 ? (
+                                    <motion.div
+                                        key={step}
+                                        initial={animPrefs.initial}
+                                        animate={animPrefs.animate}
+                                        transition={animPrefs.transition}
+                                        exit={animPrefs.exit}
+                                    >
+                                        <motion.div
+                                            key={setSubStep}
+                                            initial={animPrefs.initial}
+                                            animate={animPrefs.animate}
+                                            transition={animPrefs.transition}
+                                            exit={animPrefs.exit}
+                                        >
+                                            <AnimatePresence exitBeforeEnter>
+
+                                                {subStep === 1 ? (
+
+                                                    <>
+                                                        <h2>Kitchen type</h2>
+                                                        <motion.div
+                                                            variants={motionVariants}
+                                                            initial="hidden"
+                                                            animate="show"
+                                                            className='amenities'
+                                                        >
+                                                            <motion.label
+                                                                key="kitchentype"
+                                                                variants={motionItem}
+                                                                initial={{ opacity: 0, y: 100 }}
+                                                                className='amenity-item'
+                                                            >
+                                                                <input type="radio" name="kitchen_type" className='amenity-checkbox' />
+                                                                <div className='amenity-item-content-nodetails'>
+                                                                    <div className='amenity-tickmark'></div>
+                                                                    <div className='amenity-name'>Living room kitchen</div>
+                                                                </div>
+                                                            </motion.label>
+                                                            <motion.label
+                                                                key="kitchentype"
+                                                                variants={motionItem}
+                                                                initial={{ opacity: 0, y: 100 }}
+                                                                className='amenity-item'
+                                                            >
+                                                                <input type="radio" name="kitchen_type" className='amenity-checkbox' />
+                                                                <div className='amenity-item-content-nodetails'>
+                                                                    <div className='amenity-tickmark'></div>
+                                                                    <div className='amenity-name'>Open kitchen</div>
+                                                                </div>
+                                                            </motion.label>
+
+                                                            <motion.label
+                                                                key="kitchentype"
+                                                                variants={motionItem}
+                                                                initial={{ opacity: 0, y: 100 }}
+                                                                className='amenity-item'
+                                                            >
+                                                                <input type="radio" name="kitchen_type" className='amenity-checkbox'
+                                                                    onChange={() => setSubStep(subStep + 1)}
+                                                                />
+                                                                <div className='amenity-item-content-nodetails'>
+                                                                    <div className='amenity-tickmark'></div>
+                                                                    <div className='amenity-name'>Kitchen closet</div>
+                                                                </div>
+                                                            </motion.label>
+
+                                                        </motion.div>
+                                                    </>
+
+                                                ) : null}
+
+                                                {subStep === 2 ? (
+                                                    <>
+                                                        <button className='button btn-action' onClick={() => setSubStep(subStep - 1)}>Back</button>
+                                                        <h2>Kitchen details</h2>
+                                                    </>
+                                                ) : null}
+                                            </AnimatePresence>
+
+
+                                        </motion.div>
+
+
+                                    </motion.div>
+                                ) : null}
+
+                                {step === 5 ? (
                                     <motion.div
                                         key={step}
                                         initial={animPrefs.initial}
